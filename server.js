@@ -75,16 +75,6 @@ app.delete("/api/notes/:id", function (req, res) {
   res.json(notes);
 });
 
-// // validate server connection for GET requests
-// app.get('/', (req, res) => {
-//   res.send()
-// })
-
-// // validate server connection for POST requests
-// app.post('/', (req, res) => {
-//   res.send("POST request accepted")
-// })
-
 app.listen(port, () => {
   console.log(`App is listening on port: ${port}`)
 })
