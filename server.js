@@ -31,19 +31,17 @@ app.get('/notes', (req, res) => {
 
 // get saved notes
 app.get('/api/notes', (req, res) => {
-  // convert notes from JSON to readable data
   res.json(notes)
 })
 
 
 // save new note function
 const saveNote = (body, notesArray) => {
- 
   const note = body;
   notesArray.push(note);
   fs.writeFileSync(
     path.join(__dirname, './db/db.json'),
-    JSON.stringify({notes : notesArray }, null, 2)
+    JSON.stringify({ notes: notesArray }, null, 2)
   )
 
   return note;
@@ -55,8 +53,27 @@ app.post('/api/notes', (req, res) => {
   req.body.id = notes.length.toString();
   const newNote = saveNote(req.body, notes)
   res.json(newNote)
+  JSON.stringify(notes);
   // render 
 })
+
+// delete note
+app.delete("/api/notes/:id", function (req, res) {
+  // loop through all notes to check id
+  for (let i = 0; i < notes.length; i++) {
+
+    if (notes[i].id == req.params.id) {
+      // delete note
+      notes.splice(i, 1);
+    }
+  }
+
+  // update db.json with deletion
+  fs.writeFileSync(path.join(__dirname, "/db/db.json"), JSON.stringify(notes))
+
+  // update notes page with deletion
+  res.json(notes);
+});
 
 // // validate server connection for GET requests
 // app.get('/', (req, res) => {
