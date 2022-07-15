@@ -1,6 +1,10 @@
 const fs = require('fs')
 const express = require('express')
-const path = require('path')
+const path = require('path');
+// const { resolveNaptr } = require('dns');
+
+// database for notes
+const notes = require('./db/db.json')
 
 const app = express();
 
@@ -9,7 +13,7 @@ const port = process.env.PORT || 3001;
 // include public dir that holds frontend files
 app.use(express.static('public'));
 
-// prase incoming string/data
+// parse incoming string/data
 app.use(express.urlencoded({ extended: true }));
 
 // parse incoming JSON data
@@ -27,12 +31,31 @@ app.get('/notes', (req, res) => {
 
 // get saved notes
 app.get('/api/notes', (req, res) => {
-  res.json('saved notes')
+  // convert notes from JSON to readable data
+  res.json(notes)
 })
+
+
+// save new note function
+const saveNote = (body, notesArray) => {
+ 
+  const note = body;
+  notesArray.push(note);
+  fs.writeFileSync(
+    path.join(__dirname, './db/db.json'),
+    JSON.stringify({notes : notesArray }, null, 2)
+  )
+
+  return note;
+}
 
 // save notes
 app.post('/api/notes', (req, res) => {
-  res.send('note saved')
+  // incoming content
+  req.body.id = notes.length.toString();
+  const newNote = saveNote(req.body, notes)
+  res.json(newNote)
+  // render 
 })
 
 // // validate server connection for GET requests
