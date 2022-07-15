@@ -1,7 +1,6 @@
 const fs = require('fs')
 const express = require('express')
 const path = require('path');
-// const { resolveNaptr } = require('dns');
 
 // database for notes
 const notes = require('./db/db.json')
@@ -54,7 +53,6 @@ app.post('/api/notes', (req, res) => {
   const newNote = saveNote(req.body, notes)
   res.json(newNote)
   JSON.stringify(notes);
-  // render 
 })
 
 // delete note
@@ -69,7 +67,9 @@ app.delete("/api/notes/:id", function (req, res) {
   }
 
   // update db.json with deletion
-  fs.writeFileSync(path.join(__dirname, "/db/db.json"), JSON.stringify(notes))
+  fs.writeFileSync(
+    path.join(__dirname, "/db/db.json"), 
+    JSON.stringify(notes))
 
   // update notes page with deletion
   res.json(notes);
