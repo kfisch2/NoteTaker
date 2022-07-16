@@ -1,10 +1,13 @@
 # NoteTaker
 
-## Access
+## Description
+An app that allows a user to write and save notes as needed.
 Try this app by clicking [here](https://ronchon-saucisson-06805.herokuapp.com/)!
 
-## Description
-An app that allows a user to write and save notes as needed!
+
+https://user-images.githubusercontent.com/102554319/179329205-c091a990-195e-4638-b9c8-340082dfcc71.mp4
+
+
 
 ## Table of Contents
 
