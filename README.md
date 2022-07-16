@@ -19,7 +19,7 @@ https://user-images.githubusercontent.com/102554319/179329205-c091a990-195e-4638
 
 
 ## Installation
-Clone this repository. Be sure to run "npm i" in your integrated terminal to install node as this app requires express, fs, and path modules.
+Clone this repository. Be sure to run "npm i" in your integrated terminal to install node.
 
 ## Usage
 We are all busy and have an endless list of things to do and keep track of. This app will allow you to do just that! Write a note and save it entering a title and message. You must enter both in order to save it. Once it is saved, the note will be stored on the left column where you may click on it to view at a later time. 
